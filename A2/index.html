@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css"> 
+        <script src="js/script.js"></script>
+        <title>Framingham Risk Score Calculator</title>
+    </head>
+    <body>
+        <header>
+            <h1>
+                Framingham Risk Score Calculator
+            </h1>
+            <h4>
+                Created by Toby Roberts
+            </h4>
+        </header>
+        <main>
+            <!-- Gender And Age  -->
+            <section id="genderAgeSection" class="pages">
+                <h2>
+                    Step 1: Gender and Age
+                </h2>
+                <!-- have the gender above the age, gender have radio button in one line, age have a slider.  -->
+                <label for="gender">Gender:</label>
+                <input type="radio" id="Male" name="gender" value="Male">
+                <label for="Male">Male</label>
+                <input type="radio" id="Female" name="gender" value="Female">
+                <label for="Female">Female</label><br>
+
+                <!-- slider for age, uses javaScript to display which number is on the slider. -->
+                <label for="ageSlider">Age: <span id="ageValue">50</span></label>
+                <br>
+                <input type="range" id="ageSlider" min="20" max="79" value="50" step="1"></input>
+                
+                <button id="nextCholesterol">Next</button>
+            </section>
+
+            <!-- Cholesterol Levels -->
+            <section id="cholesterolSection" class="pages"  style="display:none;">
+                <h2>
+                    Step 2: Cholesterol Levels
+                </h2>
+                <label for="totalCholesterol">Total cholesterol, mg/dL: </label>
+                <input type="number" id="totalCholesterol" min="0" max="400">
+                <br>
+                <label for="HDLCholesterol">HDL cholesterol, mg/dL: </label>
+                <input type="number" id="HDLCholesterol"min="0" max="400">
+
+                <button id="backGenderAge">Back</button>
+                <button id="nextSmoker">Next</button>
+            </section>
+            
+            <!-- Smoker -->
+            <section id="smokerSection" class="pages"  style="display:none;">
+                <h2>
+                    Step 3: Smoking Status
+                </h2>
+                <label for="smoking">Are you a smoker?</label>
+                <input type="radio" id="smoker-yes" name="smoking" value="yes">
+                <label for="Yes">Yes</label>
+                <input type="radio" id="smoker-no" name="smoking" value="no" checked>
+                <label for="No">No</label>
+
+                <button id="backCholesterol">Back</button>
+                <button id="nextBloodPressure">Next</button>
+            </section>
+
+            <!-- Blood Pressure -->
+            <section id="bloodPressureSection" class="pages"  style="display:none;">
+                <h2>
+                    Step 4: Blood Pressure
+                </h2>
+
+                <label for="treatment">Are you receiving treatment for high blood pressure?</label>
+                <input type="radio" id="Yes" name="treatment" value="yes">
+                <label for="treatment-yes">Yes</label>
+                <input type="radio" id="No" name="treatment" value="no" checked>
+                <label for="No">No</label>
+                <br>
+                <label for="bloodPressure">Systolic Blood Pressure (mm Hg):</label>
+                <input type="number" id="bloodPressure" min="100" max = "200">
+            
+                <button id="backSmoker">Back</button>
+                <button id="calculate">Calculate Risk</button>
+            </section>
+
+            <!-- Final Risk Result -->
+            <section id="resultSection" class="pages" style="display:none;">
+                <h2>Your Framingham Risk Score</h2>
+                <p id="finalScore">Your calculated risk score will be displayed here.</p>
+    
+                <button id="restart">Start Over</button>
+            </section>
+
+        </main>
+    </body>
+</html>
