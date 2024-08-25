@@ -1,12 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Get the slider and the display element
+    // Get the sliders and display elements
     const ageSlider = document.getElementById('ageSlider');
     const ageValue = document.getElementById('ageValue');
+    const totalCholesterolSlider = document.getElementById('totalCholesterolSlider');
+    const totalCholesterolValue = document.getElementById('totalCholesterolValue');
+    const hdlCholesterolSlider = document.getElementById('HDLCholesterolSlider');
+    const hdlCholesterolValue = document.getElementById('HDLCholesterolValue');
+    const bloodPressureSlider = document.getElementById('bloodPressureSlider');
+    const bloodPressureValue = document.getElementById('bloodPressureValue');
 
-    // Update the display element when the slider value changes
+
+    // Update the display elements when the slider values change
     ageSlider.addEventListener('input', function() {
         ageValue.textContent = ageSlider.value;
+    });
+
+    totalCholesterolSlider.addEventListener('input', function() {
+        totalCholesterolValue.textContent = totalCholesterolSlider.value;
+    });
+
+    hdlCholesterolSlider.addEventListener('input', function() {
+        hdlCholesterolValue.textContent = hdlCholesterolSlider.value;
+    });
+
+    bloodPressureSlider.addEventListener('input', function() {
+        bloodPressureValue.textContent = bloodPressureSlider.value;
     });
 
 
@@ -56,6 +75,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('restart').addEventListener('click', function() {
         document.getElementById('resultSection').style.display = 'none';
         document.getElementById('genderAgeSection').style.display = 'block';
+
+        // Reset all the radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+            radio.checked = radio.defaultChecked;
+        });
+
+        // Reset all the sliders to their default values
+        document.querySelectorAll('input[type="range"]').forEach(function(slider) {
+            slider.value = slider.defaultValue;
+            // Update the corresponding displayed value
+            const displaySpan = document.getElementById(slider.id + 'Value');
+            if (displaySpan) {
+                displaySpan.textContent = slider.value;
+            }
+        });
+
+        //update the displayed values for sliders after resetting
+        ageValue.textContent = ageSlider.value;
+        totalCholesterolValue.textContent = totalCholesterolSlider.value;
+        hdlCholesterolValue.textContent = hdlCholesterolSlider.value;
+        bloodPressureValue.textContent = bloodPressureSlider.value;
     });
 
 
@@ -66,10 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateButton.addEventListener('click', function() {
         const gender = document.querySelector('input[name="gender"]:checked').value;
         const age = parseInt(document.getElementById('ageSlider').value);
-        const totalCholesterol = parseInt(document.getElementById('totalCholesterol').value);
-        const hdlCholesterol = parseInt(document.getElementById('HDLCholesterol').value);
+        const totalCholesterol = parseInt(document.getElementById('totalCholesterolSlider').value);
+        const hdlCholesterol = parseInt(document.getElementById('HDLCholesterolSlider').value);
         const smoker = document.querySelector('input[name="smoking"]:checked').value === 'yes';
-        const BloodPressure = parseInt(document.getElementById('bloodPressure').value);
+        const BloodPressure = parseInt(document.getElementById('bloodPressureSlider').value);
         const onTreatment = document.querySelector('input[name="treatment"]:checked').value === 'yes';
 
         let score = 0;
@@ -509,6 +549,7 @@ function calculateBloodPressurePoints(gender, bloodPressure, treated) {
 }
 
 
+//calculates the final risk percentage based off gender and total points. 
 function calculateRiskPercentage(gender, totalPoints) {
     let riskPercentage = 0;
 
@@ -609,6 +650,6 @@ function calculateRiskPercentage(gender, totalPoints) {
 
 function displayRiskScore(riskPercentage) {
     // Display the risk percentage on the final page
-    document.getElementById('finalScore').innerText = `Your 10-year risk of heart disease is ${riskPercentage}%`;
+    document.getElementById('finalScore').innerText = `Your 10-year risk of heart disease is ${riskPercentage}% according to the Framingham Risk Score.`;
 }
 

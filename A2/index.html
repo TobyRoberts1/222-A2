@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,8 @@
                     Step 1: Gender and Age
                 </h2>
                 <!-- have the gender above the age, gender have radio button in one line, age have a slider.  -->
-                <label for="gender">Gender:</label>
-                <input type="radio" id="Male" name="gender" value="Male">
+                <label>Gender:</label>
+                <input type="radio" id="Male" name="gender" value="Male" checked>
                 <label for="Male">Male</label>
                 <input type="radio" id="Female" name="gender" value="Female">
                 <label for="Female">Female</label><br>
@@ -32,8 +32,9 @@
                 <!-- slider for age, uses javaScript to display which number is on the slider. -->
                 <label for="ageSlider">Age: <span id="ageValue">50</span></label>
                 <br>
-                <input type="range" id="ageSlider" min="20" max="79" value="50" step="1"></input>
-                
+                <input type="range" id="ageSlider" min="20" max="79" value="50" step="1">
+                <br>
+                <!-- button for navigation -->
                 <button id="nextCholesterol">Next</button>
             </section>
 
@@ -42,12 +43,15 @@
                 <h2>
                     Step 2: Cholesterol Levels
                 </h2>
-                <label for="totalCholesterol">Total cholesterol, mg/dL: </label>
-                <input type="number" id="totalCholesterol" min="0" max="400">
+                <!-- Slider for total cholesterol -->
+                <label for="totalCholesterolSlider">Total cholesterol, mg/dL: <span id="totalCholesterolValue">200</span></label><br>
+                <input type="range" id="totalCholesterolSlider" min="0" max="400" value="200" step="1">
                 <br>
-                <label for="HDLCholesterol">HDL cholesterol, mg/dL: </label>
-                <input type="number" id="HDLCholesterol"min="0" max="400">
-
+                <!-- Slider for HDL cholesterol -->
+                <label for="HDLCholesterolSlider">HDL cholesterol, mg/dL: <span id="HDLCholesterolValue">50</span></label><br>
+                <input type="range" id="HDLCholesterolSlider" min="0" max="100" value="50" step="1">
+                <br>
+                <!-- buttons for navigation -->
                 <button id="backGenderAge">Back</button>
                 <button id="nextSmoker">Next</button>
             </section>
@@ -57,12 +61,14 @@
                 <h2>
                     Step 3: Smoking Status
                 </h2>
-                <label for="smoking">Are you a smoker?</label>
+                <!-- radio buttons to check if they smoke or not. -->
+                <label>Are you a smoker?</label>
                 <input type="radio" id="smoker-yes" name="smoking" value="yes">
                 <label for="Yes">Yes</label>
                 <input type="radio" id="smoker-no" name="smoking" value="no" checked>
                 <label for="No">No</label>
-
+                <br>
+                <!-- buttons for navigation -->
                 <button id="backCholesterol">Back</button>
                 <button id="nextBloodPressure">Next</button>
             </section>
@@ -72,25 +78,28 @@
                 <h2>
                     Step 4: Blood Pressure
                 </h2>
-
-                <label for="treatment">Are you receiving treatment for high blood pressure?</label>
+                <!-- radio buttons to see if they are being treated or not. -->
+                <label>Are you receiving treatment for high blood pressure?</label>
                 <input type="radio" id="Yes" name="treatment" value="yes">
-                <label for="treatment-yes">Yes</label>
+                <label for="Yes">Yes</label>
                 <input type="radio" id="No" name="treatment" value="no" checked>
                 <label for="No">No</label>
                 <br>
-                <label for="bloodPressure">Systolic Blood Pressure (mm Hg):</label>
-                <input type="number" id="bloodPressure" min="100" max = "200">
-            
+                <!-- Slider for systolic blood pressure -->
+                <label for="bloodPressureSlider">Systolic Blood Pressure (mm Hg): <span id="bloodPressureValue">150</span></label><br>
+                <input type="range" id="bloodPressureSlider" min="100" max="200" value="150" step="1">
+                <br>
+                <!-- buttons to navigate -->
                 <button id="backSmoker">Back</button>
                 <button id="calculate">Calculate Risk</button>
             </section>
 
             <!-- Final Risk Result -->
             <section id="resultSection" class="pages" style="display:none;">
-                <h2>Your Framingham Risk Score</h2>
-                <p id="finalScore">Your calculated risk score will be displayed here.</p>
-    
+               
+                <!-- Error message just incase somehow the calulations don't show up. -->
+                <p id="finalScore">Something has gone wrong. Please refresh the page and try again.</p>
+                <br>
                 <button id="restart">Start Over</button>
             </section>
 
